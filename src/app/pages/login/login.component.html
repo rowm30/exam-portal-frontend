@@ -2,24 +2,32 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
+                <mat-card>
                 <div class="container text-center">
                     <img src="../../../assets/logo.jpg" alt="" srcset="">
                 </div>
 
                 <h1 class="text-center">Login here</h1>
 
-                <form >
+                <!-- {{loginData | json}} -->
+                <form (ngSubmit)="formSubmit()">
                     <!-- Username field -->
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>User Name</mat-label>
-                        <input required  matInput placeholder="Enter here">
+                        <input
+                        [(ngModel)] = "loginData.username"
+                        name = "username"
+                         required  matInput placeholder="Enter here">
                         <mat-hint>Valid User Name</mat-hint>
                     </mat-form-field>
 
                     <!-- User Password -->
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input required   matInput type="password" placeholder="Password">
+                        <input
+                        [(ngModel)] = "loginData.password"
+                        name="password"
+                         required   matInput type="password" placeholder="Password">
                         <!-- <mat-hint>Hint</mat-hint> -->
                     </mat-form-field>
                     <div class="container text-center" >
@@ -27,6 +35,7 @@
                         <button mat-raised-button color="accent" class="ml20" >Reset</button>
                     </div>
                 </form>
+            </mat-card>
             </div>
         </div>
     </div>
