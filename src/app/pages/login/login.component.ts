@@ -39,17 +39,31 @@ export class LoginComponent implements OnInit {
     }
 
     // request to server to generate token
-    this.login.generateToken(this.loginData).subscribe(
-      (data:any)=>{
+    this.login.generateToken(this.loginData).subscribe({
+      next :(data:any)=>{
         console.log("success");
-        console.log(data);        
+        console.log(data);  
+        
+        // login ...
+
+        this.login.loginUser(data.token);
+
+        this.login.getCurrentUser().subscribe(
+          (user:any)=>{
+            this.login.setUser(user);
+            console.log(user);
+            // redirect... ADMIN : admin-dashboard
+            // redirect... Normal : normal-dashboard
+          }
+        )
       },
-      (error)=>{
+      error:(error)=>{
         console.log("Error");
-        console.log(error);
-        
-        
-      }
-    )
+        console.log(error);  
+      },
+      complete : () => console.log("hello")
+      
+  
+    })
   }
 }
