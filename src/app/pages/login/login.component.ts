@@ -53,6 +53,15 @@ export class LoginComponent implements OnInit {
             this.login.setUser(user);
             console.log(user);
             // redirect... ADMIN : admin-dashboard
+            if(this.login.getUserRole()=="ADMIN"){
+              // admin dashboard
+              window.location.href='/admin'
+            }else if(this.login.getUserRole()=='NORMAL'){
+              // normal user dashboard
+              window.location.href='/user-dashboard'
+            }else{
+              this.login.logout();
+            }
             // redirect... Normal : normal-dashboard
           }
         )
@@ -60,6 +69,9 @@ export class LoginComponent implements OnInit {
       error:(error)=>{
         console.log("Error");
         console.log(error);  
+        this.snack.open("Invalid Detail",'X',{
+          duration:3000
+        })
       },
       complete : () => console.log("hello")
       
