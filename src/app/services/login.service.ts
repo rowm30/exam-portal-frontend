@@ -1,11 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import baseUrl from './helper';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+
+
+  public loginStatusSubject = new Subject<boolean>();
 
   constructor(private http: HttpClient) {
     // generate token
@@ -21,6 +25,7 @@ export class LoginService {
 
   public loginUser(token: string){
     localStorage.setItem("token",token);
+    
     return true;
   }
 
@@ -51,11 +56,12 @@ export class LoginService {
     localStorage.setItem('user',JSON.stringify(user));
   }
 
-  public getUser(){
-    let userStr=localStorage.getItem("user"); 
-    if (userStr!=null) {
+  //getUser
+  public getUser() {
+    let userStr = localStorage.getItem('user');
+    if (userStr != null) {
       return JSON.parse(userStr);
-    }else{
+    } else {
       this.logout();
       return null;
     }
@@ -68,7 +74,8 @@ export class LoginService {
     return user.authorities[0].authority;
   }
 
-  public getCurrentUser(){
-    return this.http.get(`${baseUrl}/current-user`)
+ //current user: which is loggedin
+  public getCurrentUser() {
+    return this.http.get(`${baseUrl}/current-user`);
   }
 }

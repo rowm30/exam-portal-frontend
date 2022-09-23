@@ -6,13 +6,35 @@
     </a>
     <span>Exam Portal</span>
     <span class="example-spacer"></span>
-    <a [routerLink]="'/login'">
+    <a 
+    *ngIf="!login.isLoggedIn()"
+    [routerLink]="'/login'">
         <button mat-icon-button class="example-icon favorite-icon mr20" aria-label="Example icon-button with heart icon">
             <!-- <mat-icon>login</mat-icon> -->
             Login
           </button>
     </a>
-    <a [routerLink]="'/signup'">
+    <a 
+    
+    *ngIf="isLoggedIn"
+    >
+        <button mat-icon-button class="example-icon favorite-icon mr20" aria-label="Example icon-button with heart icon" >
+            <!-- <mat-icon>login</mat-icon> -->
+            {{ login.getUser().username }}
+        </button>
+    </a>
+    <a 
+    (click)="logout()"
+    *ngIf="isLoggedIn"
+    >
+        <button mat-icon-button class="example-icon favorite-icon mr20" aria-label="Example icon-button with heart icon">
+            <!-- <mat-icon>login</mat-icon> -->
+            LogOut
+          </button>
+    </a>
+    <a 
+    *ngIf="!isLoggedIn && !user"
+    [routerLink]="'/signup'">
         <button mat-icon-button class="example-icon favorite-icon mr20" aria-label="Example icon-button with heart icon">
             <!-- <mat-icon>login</mat-icon> -->
             Register
