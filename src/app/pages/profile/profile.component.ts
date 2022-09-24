@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  isLoggedIn=false;
+  user = null;
 
-  constructor() { }
+
+  constructor(public login: LoginService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn= this.login.isLoggedIn();
+    this.user = this.login.getUser();
+    this.login.loginStatusSubject.asObservable().subscribe(data=>{
+      this.isLoggedIn = this.login.isLoggedIn();
+      this.user = this.login.getUser();
+    })
   }
 
 }

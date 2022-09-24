@@ -1,1 +1,46 @@
-<h1>Wlecome to profile detail</h1>
+<mat-card>
+    <h1>Welcome to Profile!!</h1>
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="container">
+                
+                <div class="container text-center" >
+                    <img src="../../../assets/default.jpg" alt="" srcset="" class="p1">
+                </div>
+                <h1 class="text-center ">{{ login.getUser().firstName }} {{ login.getUser().lastName }}</h1>
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <!-- table details -->
+                        <table class="table">
+                            <tr>
+                                <td>Username</td>
+                                <td>{{login.getUser().username}}</td>
+                            </tr>
+                            <tr>
+                                <td>User ID</td>
+                                <td>{{login.getUser().id}}</td>
+                            </tr>
+                            <tr *ngIf="login.getUser().phone">
+                                <td>Phone</td>
+                                <td>{{login.getUser().phone}}</td>
+                            </tr>
+                            <tr>
+                                <td>Role</td>
+                                <td>{{login.getUser().authorities[0].authority}}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>{{login.getUser().enabled?"Active":"Not Active"}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+
+<mat-card-actions class="text-center">
+  <button mat-raised-button color="primary">UPDATE</button>
+  <button mat-raised-button color="accent">SHARE</button>
+</mat-card-actions>
+</mat-card>
