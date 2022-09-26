@@ -25,6 +25,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import {MatListModule} from '@angular/material/list';
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
+import { ViewCatagoriesComponent } from './pages/admin/view-catagories/view-catagories.component';
+import { AddCatagoryComponent } from './pages/admin/add-catagory/add-catagory.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
     UserDashboardComponent,
     ProfileComponent,
     SidebarComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    ViewCatagoriesComponent,
+    AddCatagoryComponent
   ],
   imports: [
     BrowserModule,
